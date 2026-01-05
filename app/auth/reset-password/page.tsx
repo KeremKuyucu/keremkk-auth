@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Mail, ArrowLeft, Loader2 } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
-import { motion } from "framer-motion"
 
 export default function ResetPasswordPage() {
   const router = useRouter()
@@ -58,12 +57,7 @@ export default function ResetPasswordPage() {
         </Link>
 
         <form onSubmit={handleResetPassword} className="space-y-5">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="relative"
-          >
+          <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-300">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
             <Input
               type="email"
@@ -73,9 +67,9 @@ export default function ResetPasswordPage() {
               className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
               required
             />
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-400">
             <Button
               type="submit"
               disabled={isLoading}
@@ -83,7 +77,7 @@ export default function ResetPasswordPage() {
             >
               {isLoading ? <Loader2 className="animate-spin" size={20} /> : t.sendLink}
             </Button>
-          </motion.div>
+          </div>
         </form>
       </AuthLayout>
     </>

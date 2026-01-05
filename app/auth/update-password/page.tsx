@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { KeyRound, Loader2, CheckCircle } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
-import { motion } from "framer-motion"
 
 export default function UpdatePasswordPage() {
   const router = useRouter()
@@ -47,12 +46,7 @@ export default function UpdatePasswordPage() {
       <Toaster position="top-center" />
       <AuthLayout title={t.updatePasswordTitle} subtitle={t.updatePasswordDesc}>
         <form onSubmit={handleUpdatePassword} className="space-y-5">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="relative"
-          >
+          <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-300">
             <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
             <Input
               type="password"
@@ -63,9 +57,9 @@ export default function UpdatePasswordPage() {
               required
               minLength={6}
             />
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-400">
             <Button
               type="submit"
               disabled={isLoading}
@@ -80,7 +74,7 @@ export default function UpdatePasswordPage() {
                 </>
               )}
             </Button>
-          </motion.div>
+          </div>
         </form>
       </AuthLayout>
     </>

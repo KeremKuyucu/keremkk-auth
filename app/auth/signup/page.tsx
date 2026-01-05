@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Mail, KeyRound, Loader2, User } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
-import { motion } from "framer-motion"
 
 export default function SignUpPage() {
   const router = useRouter()
@@ -64,12 +63,7 @@ export default function SignUpPage() {
       <Toaster position="top-center" />
       <AuthLayout title={t.signUpTitle} subtitle={t.signUpSubtitle}>
         <form onSubmit={handleSignUp} className="space-y-5">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="relative"
-          >
+          <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-300">
             <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
             <Input
               type="text"
@@ -78,14 +72,9 @@ export default function SignUpPage() {
               placeholder={t.displayName}
               className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="relative"
-          >
+          <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-400">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
             <Input
               type="email"
@@ -95,14 +84,9 @@ export default function SignUpPage() {
               className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
               required
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 }}
-            className="relative"
-          >
+          <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-500">
             <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
             <Input
               type="password"
@@ -112,9 +96,9 @@ export default function SignUpPage() {
               className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
               required
             />
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-600">
             <Button
               type="submit"
               disabled={isLoading}
@@ -122,21 +106,16 @@ export default function SignUpPage() {
             >
               {isLoading ? <Loader2 className="animate-spin" size={20} /> : t.signUp}
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="text-center pt-4 border-t border-slate-800"
-          >
+          <div className="text-center pt-4 border-t border-slate-800 animate-in fade-in duration-500 delay-700">
             <p className="text-slate-400 text-sm">
               {t.haveAccount}{" "}
               <Link href="/auth/login" className="text-indigo-400 hover:text-indigo-300 font-medium">
                 {t.signIn}
               </Link>
             </p>
-          </motion.div>
+          </div>
         </form>
       </AuthLayout>
     </>

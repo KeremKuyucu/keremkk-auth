@@ -11,7 +11,6 @@ import { translations, type Language } from "@/lib/translations"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { motion } from "framer-motion"
 import { ArrowLeft, KeyRound, Loader2, CheckCircle } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
 
@@ -77,7 +76,7 @@ export default function ChangePasswordPage() {
       <Toaster position="top-center" />
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 p-6">
         <div className="max-w-2xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="animate-in fade-in slide-in-from-top-4 duration-500">
             <Link
               href="/dashboard"
               className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-6"
@@ -85,23 +84,14 @@ export default function ChangePasswordPage() {
               <ArrowLeft size={20} />
               <span>{t.backToDashboard}</span>
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-          >
+          <div className="animate-in fade-in zoom-in-95 duration-500 delay-100">
             <Card className="bg-slate-900/50 backdrop-blur-xl border-slate-800/50 shadow-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">{t.changePassword}</h2>
 
               <form onSubmit={handleChangePassword} className="space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="relative"
-                >
+                <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-300">
                   <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                   <Input
                     type="password"
@@ -112,14 +102,9 @@ export default function ChangePasswordPage() {
                     required
                     minLength={6}
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="relative"
-                >
+                <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-400">
                   <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                   <Input
                     type="password"
@@ -130,9 +115,9 @@ export default function ChangePasswordPage() {
                     required
                     minLength={6}
                   />
-                </motion.div>
+                </div>
 
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+                <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-500">
                   <Button
                     type="submit"
                     disabled={isLoading}
@@ -147,10 +132,10 @@ export default function ChangePasswordPage() {
                       </>
                     )}
                   </Button>
-                </motion.div>
+                </div>
               </form>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>

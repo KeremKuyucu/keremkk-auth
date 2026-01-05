@@ -11,7 +11,6 @@ import { translations, type Language } from "@/lib/translations"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { motion } from "framer-motion"
 import { ArrowLeft, User, ImageIcon, Loader2, Save } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
 
@@ -81,7 +80,7 @@ export default function EditProfilePage() {
       <Toaster position="top-center" />
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 p-6">
         <div className="max-w-2xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="animate-in fade-in slide-in-from-top-4 duration-500">
             <Link
               href="/dashboard"
               className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-6"
@@ -89,37 +88,25 @@ export default function EditProfilePage() {
               <ArrowLeft size={20} />
               <span>{t.backToDashboard}</span>
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-          >
+          <div className="animate-in fade-in zoom-in-95 duration-500 delay-100">
             <Card className="bg-slate-900/50 backdrop-blur-xl border-slate-800/50 shadow-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">{t.editProfile}</h2>
 
               <form onSubmit={handleUpdateProfile} className="space-y-6">
                 <div className="flex justify-center mb-6">
-                  <motion.img
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
+                  <img
                     src={profileUrl || `https://api.dicebear.com/8.x/initials/png?seed=${displayName}`}
                     alt={displayName}
-                    className="w-32 h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg"
+                    className="w-32 h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg animate-in zoom-in duration-500 delay-200"
                     onError={(e) => {
                       e.currentTarget.src = `https://api.dicebear.com/8.x/initials/png?seed=${displayName}`
                     }}
                   />
                 </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="relative"
-                >
+                <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-300">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                   <Input
                     type="text"
@@ -129,14 +116,9 @@ export default function EditProfilePage() {
                     className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
                     required
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="relative"
-                >
+                <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-400">
                   <ImageIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                   <Input
                     type="url"
@@ -145,9 +127,9 @@ export default function EditProfilePage() {
                     placeholder={t.profileUrl}
                     className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
                   />
-                </motion.div>
+                </div>
 
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+                <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-500">
                   <Button
                     type="submit"
                     disabled={isLoading}
@@ -162,10 +144,10 @@ export default function EditProfilePage() {
                       </>
                     )}
                   </Button>
-                </motion.div>
+                </div>
               </form>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>
