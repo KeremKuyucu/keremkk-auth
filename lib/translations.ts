@@ -29,6 +29,7 @@ export const translations = {
     checkEmail: "Check your email for the confirmation link!",
     editProfile: "Edit Profile",
     changePassword: "Change Password",
+    changeEmail: "Change Email",
     displayName: "Display Name",
     profileUrl: "Profile Picture URL",
     currentPassword: "Current Password",
@@ -39,6 +40,9 @@ export const translations = {
     noAccount: "Don't have an account?",
     haveAccount: "Already have an account?",
     orContinueWith: "Or continue with",
+    newEmailPlaceholder: "New email address",
+    changeEmailDesc: "Update your email address. You'll need to verify the new email.",
+    emailChangeSuccess: "Verification email sent! Please check your inbox.",
   },
   tr: {
     loginTitle: "Tekrar Hoş Geldiniz",
@@ -70,6 +74,7 @@ export const translations = {
     checkEmail: "Onay linki için e-postanızı kontrol edin!",
     editProfile: "Profili Düzenle",
     changePassword: "Şifre Değiştir",
+    changeEmail: "E-posta Değiştir",
     displayName: "Görünen İsim",
     profileUrl: "Profil Resmi URL",
     currentPassword: "Mevcut Şifre",
@@ -80,6 +85,9 @@ export const translations = {
     noAccount: "Hesabınız yok mu?",
     haveAccount: "Zaten hesabınız var mı?",
     orContinueWith: "Veya şununla devam edin",
+    newEmailPlaceholder: "Yeni e-posta adresi",
+    changeEmailDesc: "E-posta adresinizi güncelleyin. Yeni e-postayı doğrulamanız gerekecek.",
+    emailChangeSuccess: "Doğrulama e-postası gönderildi! Lütfen gelen kutunuzu kontrol edin.",
   },
 }
 

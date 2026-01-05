@@ -78,12 +78,12 @@ export default function EditProfilePage() {
   return (
     <>
       <Toaster position="top-center" />
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 p-4 sm:p-6">
         <div className="max-w-2xl mx-auto">
           <div className="animate-in fade-in slide-in-from-top-4 duration-500">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-6"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-6 text-sm sm:text-base"
             >
               <ArrowLeft size={20} />
               <span>{t.backToDashboard}</span>
@@ -91,15 +91,15 @@ export default function EditProfilePage() {
           </div>
 
           <div className="animate-in fade-in zoom-in-95 duration-500 delay-100">
-            <Card className="bg-slate-900/50 backdrop-blur-xl border-slate-800/50 shadow-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">{t.editProfile}</h2>
+            <Card className="bg-slate-900/50 backdrop-blur-xl border-slate-800/50 shadow-2xl p-6 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">{t.editProfile}</h2>
 
-              <form onSubmit={handleUpdateProfile} className="space-y-6">
+              <form onSubmit={handleUpdateProfile} className="space-y-5 sm:space-y-6">
                 <div className="flex justify-center mb-6">
                   <img
                     src={profileUrl || `https://api.dicebear.com/8.x/initials/png?seed=${displayName}`}
                     alt={displayName}
-                    className="w-32 h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg animate-in zoom-in duration-500 delay-200"
+                    className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg animate-in zoom-in duration-500 delay-200"
                     onError={(e) => {
                       e.currentTarget.src = `https://api.dicebear.com/8.x/initials/png?seed=${displayName}`
                     }}
@@ -113,7 +113,7 @@ export default function EditProfilePage() {
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                     placeholder={t.displayName}
-                    className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
+                    className="bg-slate-800/50 border-slate-700 pl-11 h-11 sm:h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors text-sm sm:text-base"
                     required
                   />
                 </div>
@@ -125,7 +125,7 @@ export default function EditProfilePage() {
                     value={profileUrl}
                     onChange={(e) => setProfileUrl(e.target.value)}
                     placeholder={t.profileUrl}
-                    className="bg-slate-800/50 border-slate-700 pl-11 h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors"
+                    className="bg-slate-800/50 border-slate-700 pl-11 h-11 sm:h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors text-sm sm:text-base"
                   />
                 </div>
 
@@ -133,7 +133,7 @@ export default function EditProfilePage() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2"
+                    className="w-full h-11 sm:h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
                     {isLoading ? (
                       <Loader2 className="animate-spin" size={20} />
