@@ -8,7 +8,12 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'KeremKK Auth',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 }
+
 
 export default function RootLayout({
   children,
