@@ -8,10 +8,11 @@ import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { supabase } from "@/lib/supabase-client"
 import { translations, type Language } from "@/lib/translations"
+import { NameFilterService } from "@/lib/name-filter"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { ArrowLeft, User, ImageIcon, Loader2, Save } from "lucide-react"
+import { ArrowLeft, User, Loader2, Save } from "lucide-react"
 import { toast, Toaster } from "react-hot-toast"
 
 export default function EditProfilePage() {
@@ -19,7 +20,6 @@ export default function EditProfilePage() {
   const { userData, loading } = useAuth()
   const [language, setLanguage] = useState<Language>("en")
   const [displayName, setDisplayName] = useState("")
-  const [profileUrl, setProfileUrl] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -32,7 +32,6 @@ export default function EditProfilePage() {
     }
     if (userData) {
       setDisplayName(userData.displayName || "")
-      setProfileUrl(userData.profilePicture || "")
     }
   }, [loading, userData, router])
 
@@ -40,14 +39,22 @@ export default function EditProfilePage() {
 
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    const validationError = NameFilterService.validate(displayName)
+    if (validationError) {
+      toast.error(t[validationError as keyof typeof t] || "Invalid name")
+      return
+    }
+
     setIsLoading(true)
 
     try {
-      let finalAvatarUrl = profileUrl
-      const isDefaultAvatar = profileUrl.includes("api.dicebear.com/8.x/initials") || !profileUrl
+      // Retain current avatar url or fallback to initials seed if default avatar was used
+      let finalAvatarUrl = userData?.profilePicture || ""
+      const isDefaultAvatar = !finalAvatarUrl || finalAvatarUrl.includes("api.dicebear.com/8.x/initials")
 
       if (isDefaultAvatar) {
-        finalAvatarUrl = `https://api.dicebear.com/8.x/initials/png?seed=${displayName || userData?.uid}`
+        finalAvatarUrl = `https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(displayName || userData?.uid || "")}`
       }
 
       const { error: authError } = await supabase.auth.updateUser({
@@ -75,6 +82,8 @@ export default function EditProfilePage() {
     )
   }
 
+  const currentAvatar = userData.profilePicture || `https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(displayName || userData.uid)}`
+
   return (
     <>
       <Toaster position="top-center" />
@@ -97,11 +106,11 @@ export default function EditProfilePage() {
               <form onSubmit={handleUpdateProfile} className="space-y-5 sm:space-y-6">
                 <div className="flex justify-center mb-6">
                   <img
-                    src={profileUrl || `https://api.dicebear.com/8.x/initials/png?seed=${displayName}`}
+                    src={currentAvatar}
                     alt={displayName}
                     className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg animate-in zoom-in duration-500 delay-200"
                     onError={(e) => {
-                      e.currentTarget.src = `https://api.dicebear.com/8.x/initials/png?seed=${displayName}`
+                      e.currentTarget.src = `https://api.dicebear.com/8.x/initials/png?seed=${encodeURIComponent(displayName || userData.uid)}`
                     }}
                   />
                 </div>
@@ -115,17 +124,6 @@ export default function EditProfilePage() {
                     placeholder={t.displayName}
                     className="bg-slate-800/50 border-slate-700 pl-11 h-11 sm:h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors text-sm sm:text-base"
                     required
-                  />
-                </div>
-
-                <div className="relative animate-in fade-in slide-in-from-left-4 duration-500 delay-400">
-                  <ImageIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
-                  <Input
-                    type="url"
-                    value={profileUrl}
-                    onChange={(e) => setProfileUrl(e.target.value)}
-                    placeholder={t.profileUrl}
-                    className="bg-slate-800/50 border-slate-700 pl-11 h-11 sm:h-12 text-white placeholder:text-slate-500 focus:border-indigo-500 transition-colors text-sm sm:text-base"
                   />
                 </div>
 

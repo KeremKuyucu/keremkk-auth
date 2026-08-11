@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase-client"
 import { translations, type Language } from "@/lib/translations"
+import { NameFilterService } from "@/lib/name-filter"
 import { AuthLayout } from "@/components/auth/auth-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -30,6 +31,14 @@ export default function SignUpPage() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email || !password) return
+
+    if (fullName) {
+      const validationError = NameFilterService.validate(fullName)
+      if (validationError) {
+        toast.error(t[validationError as keyof typeof t] || "Invalid name")
+        return
+      }
+    }
 
     setIsLoading(true)
     try {

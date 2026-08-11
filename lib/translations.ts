@@ -43,6 +43,11 @@ export const translations = {
     newEmailPlaceholder: "New email address",
     changeEmailDesc: "Update your email address. You'll need to verify the new email.",
     emailChangeSuccess: "Verification email sent! Please check your inbox.",
+    name_too_short: "Display name must be at least 2 characters.",
+    name_too_long: "Display name cannot exceed 20 characters.",
+    name_invalid_chars: "Display name contains invalid characters.",
+    name_contact_info_forbidden: "Sharing phone numbers, emails, or links in display name is forbidden.",
+    name_inappropriate: "This display name contains inappropriate language.",
   },
   tr: {
     loginTitle: "Tekrar Hoş Geldiniz",
@@ -88,6 +93,11 @@ export const translations = {
     newEmailPlaceholder: "Yeni e-posta adresi",
     changeEmailDesc: "E-posta adresinizi güncelleyin. Yeni e-postayı doğrulamanız gerekecek.",
     emailChangeSuccess: "Doğrulama e-postası gönderildi! Lütfen gelen kutunuzu kontrol edin.",
+    name_too_short: "Görünen isim en az 2 karakter olmalıdır.",
+    name_too_long: "Görünen isim 20 karakterden uzun olamaz.",
+    name_invalid_chars: "Görünen isim geçersiz karakterler içeriyor.",
+    name_contact_info_forbidden: "İsimde telefon numarası, e-posta veya link paylaşılamaz.",
+    name_inappropriate: "Bu isim uygunsuz ifadeler içeriyor.",
   },
 }
 
