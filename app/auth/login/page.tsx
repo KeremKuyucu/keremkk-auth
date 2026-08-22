@@ -23,7 +23,14 @@ export default function LoginPage() {
 
   useEffect(() => {
     setLanguage(navigator.language.startsWith("tr") ? "tr" : "en")
-  }, [])
+
+    // Check if session already exists (e.g. from OAuth redirect)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        router.push("/dashboard")
+      }
+    })
+  }, [router])
 
   const t = translations[language]
 

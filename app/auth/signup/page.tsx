@@ -25,7 +25,14 @@ export default function SignUpPage() {
 
   useEffect(() => {
     setLanguage(navigator.language.startsWith("tr") ? "tr" : "en")
-  }, [])
+
+    // Check if session already exists
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        router.push("/dashboard")
+      }
+    })
+  }, [router])
 
   const t = translations[language]
 
