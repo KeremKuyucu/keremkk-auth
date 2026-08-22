@@ -48,6 +48,8 @@ export const translations = {
     name_invalid_chars: "Display name contains invalid characters.",
     name_contact_info_forbidden: "Sharing phone numbers, emails, or links in display name is forbidden.",
     name_inappropriate: "This display name contains inappropriate language.",
+    googleSignIn: "Continue with Google",
+    signingInWithGoogle: "Connecting...",
   },
   tr: {
     loginTitle: "Tekrar Hoş Geldiniz",
@@ -98,6 +100,8 @@ export const translations = {
     name_invalid_chars: "Görünen isim geçersiz karakterler içeriyor.",
     name_contact_info_forbidden: "İsimde telefon numarası, e-posta veya link paylaşılamaz.",
     name_inappropriate: "Bu isim uygunsuz ifadeler içeriyor.",
+    googleSignIn: "Google ile devam et",
+    signingInWithGoogle: "Bağlanıyor...",
   },
 }
 
